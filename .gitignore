@@ -12,3 +12,6 @@
 /captures
 .externalNativeBuild
 .cxx
+
+# User-specific configurations
+.idea/vcs.xml
