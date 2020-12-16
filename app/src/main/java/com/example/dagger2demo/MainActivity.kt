@@ -29,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         // Now any injected object(ex.ViewModel) is available
         // ...
         Log.d(TAG, "--onCreate")
-        Log.d(
-            TAG, "graph:${myApplication.applicationGraph.hashCode()}, " +
-                    "repository:${myApplication.userRepository.hashCode()}"
-        )
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

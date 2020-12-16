@@ -1,8 +1,9 @@
 package com.example.dagger2demo.di
 
 import com.example.dagger2demo.MainActivity
-import com.example.dagger2demo.data.source.repository.UserRepository
+import com.example.dagger2demo.data.source.repository.UserRepositoryImpl
 import com.example.dagger2demo.di.module.NetworkModule
+import com.example.dagger2demo.di.module.RepositoryModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -26,11 +27,17 @@ import javax.inject.Singleton
 @Singleton
 // The "modules" attribute in the @Component annotation tells Dagger what Modules
 // to include when building the graph
-@Component(modules = [NetworkModule::class])
+@Component(
+    modules =
+    [
+        RepositoryModule::class,
+        NetworkModule::class
+    ]
+)
 interface ApplicationGraph {
     // The return type  of functions inside the component interface is
     // what can be provided from the container
-    fun repository(): UserRepository
+//    fun repository(): UserRepositoryImpl
 
     // This tells Dagger that Activity requests injection so the graph needs to
     // satisfy all the dependencies of the fields that Activity is requesting.
