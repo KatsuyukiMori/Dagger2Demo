@@ -1,10 +1,14 @@
 package com.example.dagger2demo.di
 
 import com.example.dagger2demo.MainActivity
+import com.example.dagger2demo.MyApplication
 import com.example.dagger2demo.data.source.repository.UserRepositoryImpl
+import com.example.dagger2demo.di.module.MyApplicationModule
 import com.example.dagger2demo.di.module.NetworkModule
 import com.example.dagger2demo.di.module.RepositoryModule
+import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 /**
@@ -30,6 +34,8 @@ import javax.inject.Singleton
 @Component(
     modules =
     [
+        AndroidInjectionModule::class,
+        MyApplicationModule::class,
         RepositoryModule::class,
         NetworkModule::class
     ]
@@ -44,4 +50,14 @@ interface ApplicationGraph {
     // Activityが一意であるグラフにアクセスし注入を要求することをDaggerに伝える
     // そのために要求元のActivityを引数で伝えてもらう
     fun inject(activity: MainActivity)
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: MyApplication): Builder
+        fun appModule(myApplicationModule: MyApplicationModule): Builder
+        fun build(): ApplicationGraph
+    }
+
+    fun inject(application: MyApplication)
 }

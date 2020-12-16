@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        myApplication = applicationContext as MyApplication
+//        myApplication = applicationContext as MyApplication
         // Make Dagger instantiate @Inject fields in MainActivity
         // フラグメントの復元に関する問題を回避するため、super.onCreate()の前にDaggerを注入する必要がある
-        myApplication.applicationGraph.inject(this)
+//        myApplication.applicationGraph.inject(this)
         // Now any injected object(ex.ViewModel) is available
         // ...
         Log.d(TAG, "--onCreate")
